@@ -20,7 +20,7 @@ const main = async () => {
     const holder2 = await holder.$$(".external-html");
     const data = await Promise.all(holder2.map(h => {
         return Promise.all([
-            h.$("h5 span").then(h => h.evaluate(element => parseInt(element.textContent)), h),
+            h.$("h5 span").then(h => h.evaluate(element => parseInt(element.textContent).replace(/,/g, "")), h),
             h.$("h5 span:nth-child(3)").then(h => h.evaluate(element => element.textContent), h)
         ])
     }))
@@ -29,7 +29,7 @@ const main = async () => {
         console.log(d);
         const [total, ...place] = d;
         return {
-            total.replace(/,/g, ""),
+            total,
             place: place.join(" ").includes("Korea") ? "South Korea" : place.join(" "),
             now
         }
