@@ -29,7 +29,7 @@ const main = async () => {
         console.log(d);
         const [total, ...place] = d;
         return {
-            total,
+            total.replace(/,/g, ""),
             place: place.join(" ").includes("Korea") ? "South Korea" : place.join(" "),
             now
         }
