@@ -44,11 +44,11 @@ const main = async () => {
     })
     console.log(result);
 
-    
-    const fileData = "Date, Place, Count \n" + 
+    const exists = fs.existsSync(filename);
+    const fileData =  (exists ? "Date, Place, Count \n" : "") + 
     result.map(r => `${r.now}, ${r.place}, ${r.total}`).join(",\n");
 
-    if(fs.existsSync(filename)){
+    if(exists){
         fs.appendFile(filename, "," + fileData, () => {
         console.log(`${filename} updated`);
         browser.close();
