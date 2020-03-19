@@ -48,10 +48,17 @@ const main = async () => {
     const fileData = "Date, Place, Count \n" + 
     result.map(r => `${r.now}, ${r.place}, ${r.total}`).join(",\n");
 
+    if(fs.existsSync(filename)){
+        fs.appendFile(filename, "," + fileData, () => {
+        console.log(`${filename} updated`);
+        browser.close();
+    })
+    } else {
     fs.writeFile(filename, fileData, () => {
         console.log(`${filename} updated`);
         browser.close();
     })
+        }
 };
 
 main();
