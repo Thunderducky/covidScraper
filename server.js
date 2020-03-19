@@ -46,7 +46,7 @@ const main = async () => {
 
     
     const fileData = "Date, Place, Count \n" + 
-    result.map(r => `${r.now}, ${r.place}, ${r.total}`).join(",");
+    result.map(r => `${r.now}, ${r.place}, ${r.total}`).join(",\n");
 
     fs.writeFile(filename, fileData, () => {
         console.log(`${filename} updated`);
